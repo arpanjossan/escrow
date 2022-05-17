@@ -8,7 +8,7 @@ import { assert } from "chai";
 
 describe('anchor-escrow', () => {
   const commitment: Commitment = 'processed';
-  const connection = new Connection('https://rpc-mainnet-fork.dappio.xyz', { commitment, wsEndpoint: 'wss://rpc-mainnet-fork.dappio.xyz/ws' });
+  const connection = new Connection('https://api.devnet.solana.com ', { commitment, wsEndpoint: 'wss://api.devnet.solana.com/' });
   const options = anchor.Provider.defaultOptions();
   const wallet = NodeWallet.local();
   const provider = new anchor.Provider(connection, wallet, options);
@@ -83,7 +83,10 @@ describe('anchor-escrow', () => {
     );
 
     initializerTokenAccountA = await mintA.createAccount(initializerMainAccount.publicKey);
+    console.log(initializerTokenAccountA,"initializerTokenAccountA");
+    
     takerTokenAccountA = await mintA.createAccount(takerMainAccount.publicKey);
+    console.log(takerTokenAccountA,"takerTokenAccountA");
 
     initializerTokenAccountB = await mintB.createAccount(initializerMainAccount.publicKey);
     takerTokenAccountB = await mintB.createAccount(takerMainAccount.publicKey);
